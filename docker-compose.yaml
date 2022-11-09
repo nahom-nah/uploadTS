@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+  upload_express:
+    network_mode: host
+    container_name: upload_express
+    build:
+      dockerfile: express.dockerfile
+      context: .
+      args:
+        - EXPRESS_PORT=${EXPRESS_PORT}
+    volumes: 
+      - ${LOCAL_UPLOADED_PATH}:/usr/src/app/docker-uploads
+    restart: always
+    environment:
+      - EXPRESS_PORT=${EXPRESS_PORT}
